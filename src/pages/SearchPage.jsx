@@ -1,11 +1,11 @@
 import React from 'react';
 
-const SignIn = () => {
+const SearchPage = () => {
     return (
         <div>
-            signIn
+           search
         </div>
     );
 };
 
-export default SignIn;
+export default SearchPage;

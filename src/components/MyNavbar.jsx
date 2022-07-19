@@ -1,19 +1,28 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { LinkContainer } from 'react-router-bootstrap'
+import Search from "./Search";
 
 function MyNavbar() {
     return (
         <>
             <Navbar bg="primary" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">YourFavTeams</Navbar.Brand>
+                    <LinkContainer to="/">
+                        <Navbar.Brand>YourFavTeams</Navbar.Brand>
+                    </LinkContainer>
                     <Nav className="me-auto">
-                        <Nav.Link href="#features">Sign in</Nav.Link>
-                        <Nav.Link href="#pricing">Sign up</Nav.Link>
+                        <LinkContainer to="/signin">
+                            <Nav.Link>Sign in</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/signup">
+                            <Nav.Link>Sign up</Nav.Link>
+                        </LinkContainer>
                     </Nav>
                 </Container>
             </Navbar>
+            <Search/>
         </>
     );
 }

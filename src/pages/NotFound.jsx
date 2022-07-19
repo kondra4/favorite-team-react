@@ -1,11 +1,11 @@
 import React from 'react';
 
-const SignIn = () => {
+const NotFound = () => {
     return (
         <div>
-            signIn
+            not found page
         </div>
     );
 };
 
-export default SignIn;
+export default NotFound;
