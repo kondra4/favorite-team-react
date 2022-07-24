@@ -5,8 +5,8 @@ import Button from "react-bootstrap/Button";
 import {ButtonGroup, ListGroup} from "react-bootstrap";
 
 function CardGroup({arrRes}) {
-
-    // console.log(arrRes.map((obj) => obj.team.logo))
+    //
+    // console.log(arrRes)
     return (
         <Row xs={1} md={4} className="g-4">
             {arrRes.map((arrRes) => (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 
@@ -17,39 +17,52 @@ import HistoryPage from "./pages/HistoryPage";
 import { AuthContext } from "./context/AuthContext";
 
 import {RequirePrivate} from "./hoc/RequirePrivate";
+import {useSearchTeamQuery} from "./store/reducers/teamsApi";
+import {SearchContext} from "./context/SearchContext";
+
 
 
 function App() {
-
+    // const {data, error, isLoading} = useSearchTeamQuery('manches')
+    // useEffect(() => {
+    //
+    // }, []);
+    // console.log(data)
+    const [searchTitle, setSearchTitle] = useState('');
     const [isAuth, setIsAuth] = useState(false);
 
   return (
-      <AuthContext.Provider value={{
-          isAuth,
-          setIsAuth
+      <SearchContext.Provider value={{
+          searchTitle,
+          setSearchTitle
       }}>
-          <Container>
-              <MyNavbar/>
-              <Routes>
-                  <Route path="/" element={<HomePage />}/>
-                  <Route path="/signin" element={<SignIn/>}/>
-                  <Route path="/signup" element={<SignUp/>}/>
-                  <Route path="/favorites" element={
-                      <RequirePrivate>
-                          <FavoritesTeams/>
-                      </RequirePrivate>
-                  }/>
-                  <Route path="/history" element={
-                      <RequirePrivate>
-                          <HistoryPage/>
-                      </RequirePrivate>
-                  }/>
-                  <Route path="/search" element={<SearchPage />}/>
-                  <Route path="/details" element={<DetailsTeam />}/>
-                  <Route path="*" element={<NotFound/>}/>
-              </Routes>
-          </Container>
-      </AuthContext.Provider>
+          <AuthContext.Provider value={{
+              isAuth,
+              setIsAuth
+          }}>
+              <Container>
+                  <MyNavbar/>
+                  <Routes>
+                      <Route path="/" element={<HomePage />}/>
+                      <Route path="/signin" element={<SignIn/>}/>
+                      <Route path="/signup" element={<SignUp/>}/>
+                      <Route path="/favorites" element={
+                          <RequirePrivate>
+                              <FavoritesTeams/>
+                          </RequirePrivate>
+                      }/>
+                      <Route path="/history" element={
+                          <RequirePrivate>
+                              <HistoryPage/>
+                          </RequirePrivate>
+                      }/>
+                      <Route path="/search" element={<SearchPage/>}/>
+                      <Route path="/details" element={<DetailsTeam />}/>
+                      <Route path="*" element={<NotFound/>}/>
+                  </Routes>
+              </Container>
+          </AuthContext.Provider>
+      </SearchContext.Provider>
   );
 }
 

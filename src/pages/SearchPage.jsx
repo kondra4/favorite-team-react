@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import CardGroup from '../components/CardGroup';
+import {useSearchTeamQuery} from "../store/reducers/teamsApi";
+import teamsSearch from '../teamsSearch.json'
+import {SearchContext} from "../context/SearchContext";
 
 const SearchPage = () => {
+
+    const {searchTitle} = useContext(SearchContext);
+    const {data} = useSearchTeamQuery(searchTitle);
+    // console.log(data)
+    // console.log(teamsSearch)
+
     return (
         <div>
-           search
+            {data
+                ?
+                <CardGroup arrRes={data}/>
+                :null
+            }
         </div>
     );
 };
