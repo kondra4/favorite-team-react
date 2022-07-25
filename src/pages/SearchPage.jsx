@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import CardGroup from '../components/CardGroup';
 import {useSearchTeamQuery} from "../store/reducers/teamsApi";
-import teamsSearch from '../teamsSearch.json'
 import {SearchContext} from "../context/SearchContext";
 
 const SearchPage = () => {
