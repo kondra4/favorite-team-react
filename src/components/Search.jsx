@@ -1,15 +1,20 @@
-import {useContext} from 'react';
+import {useContext, useCallback} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { LinkContainer } from 'react-router-bootstrap';
 import {SearchContext} from "../context/SearchContext";
+import debounce from 'lodash.debounce'
 
 
 function Search() {
 
-
     const {setSearchTitle} = useContext(SearchContext);
+
+    const onChange = (e) => {
+        setSearchTitle(e.target.value);
+    }
+    const debounceOnChange = useCallback(debounce(onChange, 1000),[])
 
 
     return (
@@ -23,10 +28,7 @@ function Search() {
                 <Form.Control
                     aria-label="Example text with button addon"
                     aria-describedby="basic-addon1"
-                    onChange={(e) => {
-                        setSearchTitle(e.target.value)
-                    }}
-                />
+                    onChange={debounceOnChange}          />
             </InputGroup>
         </>
     );

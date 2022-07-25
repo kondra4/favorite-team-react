@@ -8,6 +8,7 @@ const SearchPage = () => {
 
     const {searchTitle} = useContext(SearchContext);
     const {data} = useSearchTeamQuery(searchTitle);
+
     // console.log(data)
     // console.log(teamsSearch)
 
