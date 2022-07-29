@@ -15,46 +15,37 @@
 //     getDefaultMiddleware().concat(teamsApi.middleware),
 // });
 
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  persistReducer,
-  persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { teamsApi } from "./teamsApi";
-import favoritesReducer from "./favoritesSlice";
-import userDataReducer from "./userSlice";
-import fetchFavoritesReducer from "./fetchFavSlice";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { teamsApi } from './teamsApi'
+import favoritesReducer from './favoritesSlice'
+import userDataReducer from './userSlice'
+import fetchFavoritesReducer from './fetchFavSlice'
 
 const rootReducer = combineReducers({
-  [teamsApi.reducerPath]: teamsApi.reducer,
-  favorites: favoritesReducer,
-  user: userDataReducer,
-  fetchFavorites: fetchFavoritesReducer,
-});
+	[teamsApi.reducerPath]: teamsApi.reducer,
+	favorites: favoritesReducer,
+	user: userDataReducer,
+	fetchFavorites: fetchFavoritesReducer,
+})
 
 const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["teams", "fetchFavorites"],
-};
+	key: 'root',
+	storage,
+	blacklist: ['teams', 'fetchFavorites'],
+}
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(teamsApi.middleware),
-});
-export const persistor = persistStore(store);
-export default store;
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}).concat(teamsApi.middleware),
+})
+export const persistor = persistStore(store)
+export default store
