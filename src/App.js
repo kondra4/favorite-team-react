@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import MyNavbar from "./components/MyNavbar";
 import HomePage from "./pages/HomePage";
-import FavoritesTeams from "./pages/FavoritesTeams";
+import FavoritesTeams from "./pages/FavoritesPage";
 import DetailsPage from "./pages/DetailsPage";
 import SearchPage from "./pages/SearchPage";
 import SignIn from "./pages/SignIn";
@@ -21,7 +21,7 @@ import { SearchContext } from "./context/SearchContext";
 
 function App() {
   const [searchTitle, setSearchTitle] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
   return (
     <SearchContext.Provider

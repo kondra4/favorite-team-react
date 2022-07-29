@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { ButtonGroup, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 function CardGroup({ arrRes }) {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function CardGroup({ arrRes }) {
             </ListGroup>
             <ButtonGroup size="sm">
               <Button onClick={() => showMore(arrRes.team.id)}>More</Button>
-              <Button variant="outline-success">+ Add in favorites</Button>
+              <FavoriteButton id={arrRes.team.id} />
             </ButtonGroup>
           </Card>
         </Col>

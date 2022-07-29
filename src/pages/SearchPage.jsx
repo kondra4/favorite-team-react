@@ -6,6 +6,7 @@ import { SearchContext } from "../context/SearchContext";
 const SearchPage = () => {
   const { searchTitle } = useContext(SearchContext);
   const { data } = useSearchTeamQuery(searchTitle);
+  // const data = teams.response;
 
   return <div>{data ? <CardGroup arrRes={data} /> : null}</div>;
 };

@@ -35,4 +35,8 @@ export const teamsApi = createApi({
   }),
 });
 
-export const { useSearchTeamQuery, useGetMoreInfoQuery } = teamsApi;
+export const {
+  useSearchTeamQuery,
+  useGetMoreInfoQuery,
+  useGetFavoritesTeamQuery,
+} = teamsApi;

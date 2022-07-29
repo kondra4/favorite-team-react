@@ -8,6 +8,7 @@ const DetailsPage = () => {
 
   const teamID = location.state;
   const { data } = useGetMoreInfoQuery(teamID);
+  // const data = teams.response;
 
   return <div>{data ? <DetailsTeam arrRes={data} /> : null}</div>;
 };

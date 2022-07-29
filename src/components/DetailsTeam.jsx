@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { ButtonGroup, ListGroup } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { ListGroup } from "react-bootstrap";
+import FavoriteButton from "./FavoriteButton";
 
 const DetailsTeam = ({ arrRes }) => {
   return arrRes.map((arrRes) => (
@@ -13,9 +13,7 @@ const DetailsTeam = ({ arrRes }) => {
         <ListGroup.Item>{arrRes.venue.city}</ListGroup.Item>
         <ListGroup.Item>{arrRes.venue.capacity}</ListGroup.Item>
       </ListGroup>
-      <ButtonGroup size="sm">
-        <Button variant="outline-success">+ Add in favorites</Button>
-      </ButtonGroup>
+      <FavoriteButton id={arrRes.team.id} />
     </Card>
   ));
 };

@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { AuthContext } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { signInAction } from "../store/reducers/userSlice";
 
 function SignInForm() {
-  const { setIsAuth } = useContext(AuthContext);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [valueEmail, setValueEmail] = useState("");
@@ -20,7 +20,7 @@ function SignInForm() {
       valueEmail === JSON.parse(localStorage.getItem("Email")) &&
       valuePassword === JSON.parse(localStorage.getItem("Password"))
     ) {
-      setIsAuth(true);
+      dispatch(signInAction());
       navigate("/", { replace: true });
     } else {
       alert("Error: Invalid password or Email");

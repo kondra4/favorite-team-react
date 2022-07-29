@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -6,15 +6,18 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 
 import Search from "./Search";
-
-import { AuthContext } from "../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { logOutAction } from "../store/reducers/userSlice";
 
 function MyNavbar() {
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  // const { isAuth, setIsAuth } = useContext(AuthContext);
+  const isAuth = useSelector((state) => state.user.isAuth);
+  // const isAuth = JSON.parse(localStorage.getItem("Auth"));
+  const dispatch = useDispatch();
 
   const logOut = (event) => {
     event.preventDefault();
-    setIsAuth(false);
+    dispatch(logOutAction());
   };
 
   return (
