@@ -1,20 +1,3 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import { teamsApi } from "./teamsApi";
-// import favoritesReducer from "./FavoritesSlice";
-// import userReducer from "./UserSlice";
-// import fetchFavoritesReducer from "./fetchFavSlice";
-//
-// export const store = configureStore({
-//   reducer: {
-//     [teamsApi.reducerPath]: teamsApi.reducer,
-//     favorites: favoritesReducer,
-//     user: userReducer,
-//     fetchFavorites: fetchFavoritesReducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(teamsApi.middleware),
-// });
-
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   FLUSH,
