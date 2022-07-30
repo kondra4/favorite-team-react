@@ -4,9 +4,14 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addInHistorySearch } from "../store/reducers/historySllice";
 
 function Search() {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
   const [searchTitle, setSearchTitle] = useState("");
 
   const changeSearchInput = (e) => {
@@ -15,6 +20,7 @@ function Search() {
   const debounceOnChange = useCallback(debounce(changeSearchInput, 1000), []);
 
   const clickButtonSearch = () => {
+    dispatch(addInHistorySearch(searchTitle));
     navigate({ pathname: "/search", search: `search=${searchTitle}` });
   };
 

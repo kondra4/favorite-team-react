@@ -14,12 +14,14 @@ import { teamsApi } from "./teamsApi";
 import favoritesReducer from "./favoritesSlice";
 import userDataReducer from "./userSlice";
 import fetchFavoritesReducer from "./fetchFavSlice";
+import historyReducer from "./historySllice";
 
 const rootReducer = combineReducers({
   [teamsApi.reducerPath]: teamsApi.reducer,
   favorites: favoritesReducer,
   user: userDataReducer,
   fetchFavorites: fetchFavoritesReducer,
+  historySearch: historyReducer,
 });
 
 const persistConfig = {
