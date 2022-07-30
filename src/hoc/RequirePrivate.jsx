@@ -1,19 +1,15 @@
-import React from 'react';
-import {Navigate} from 'react-router-dom'
-import {useContext} from 'react';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import {AuthContext} from '../context/AuthContext';
+const RequirePrivate = ({ children }) => {
+  const isAuth = useSelector((state) => state.user.isAuth);
 
-const RequirePrivate = ({children}) => {
+  if (!isAuth) {
+    return <Navigate to="/signin" />;
+  }
 
-    const {isAuth} = useContext(AuthContext)
+  return children;
+};
 
-    if (!isAuth) {
-
-        return <Navigate to="/signin"/>
-    }
-
-    return children;
-}
-
-export {RequirePrivate};
+export { RequirePrivate };
