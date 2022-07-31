@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardGroup from "../components/CardGroup";
 import { useSearchTeamQuery } from "../store/reducers/teamsApi";
-import { SearchContext } from "../context/SearchContext";
+import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
-  const { searchTitle } = useContext(SearchContext);
+  const [search] = useSearchParams();
+
+  const searchTitle = search.get("search");
 
   const { data } = useSearchTeamQuery(searchTitle);
 
