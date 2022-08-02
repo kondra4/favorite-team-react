@@ -18,6 +18,7 @@ export const teamsApi = createApi({
       }),
       transformResponse: (response) => response.response.map((obj) => obj.team),
     }),
+
     getMoreInfo: builder.query({
       query: (teamID) => ({
         url: "teams",

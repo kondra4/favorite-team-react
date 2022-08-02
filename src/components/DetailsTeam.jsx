@@ -4,7 +4,7 @@ import { ListGroup } from "react-bootstrap";
 import FavoriteButton from "./FavoriteButton";
 import PropTypes from "prop-types";
 
-const DetailsTeam = ({ moreInfo }) => {
+const DetailsTeam = ({ moreInfo, teamID }) => {
   return (
     <Card key={moreInfo.id} className="w-50 mx-auto">
       <Card.Header className="text-center">{moreInfo.name}</Card.Header>
@@ -14,7 +14,7 @@ const DetailsTeam = ({ moreInfo }) => {
         <ListGroup.Item>{moreInfo.city}</ListGroup.Item>
         <ListGroup.Item>{moreInfo.capacity}</ListGroup.Item>
       </ListGroup>
-      <FavoriteButton id={moreInfo.id} />
+      <FavoriteButton id={teamID} />
     </Card>
   );
 };
@@ -28,6 +28,7 @@ DetailsTeam.propTypes = {
     city: PropTypes.string,
     image: PropTypes.string,
   }),
+  teamID: PropTypes.number,
 };
 
 export default DetailsTeam;
