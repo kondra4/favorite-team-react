@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -6,8 +6,10 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 
 import Search from "./Search";
+import SwitchTheme from "./SwitchTheme";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutAction } from "../store/reducers/userSlice";
+import { ThemeContext } from "../context/ThemeContext";
 
 function MyNavbar() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -19,11 +21,13 @@ function MyNavbar() {
     dispatch(logOutAction());
   };
 
+  const { theme } = useContext(ThemeContext);
+
   const userName = JSON.parse(localStorage.getItem("Email"));
 
   return (
     <>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg={`${theme}`} variant="dark">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>YourFavTeams</Navbar.Brand>
@@ -42,7 +46,7 @@ function MyNavbar() {
                 </LinkContainer>
                 <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>
-                    Signed in as: <a>{userName}</a>
+                    <a>{userName}</a>
                   </Navbar.Text>
                 </Navbar.Collapse>
               </Nav>
@@ -57,6 +61,7 @@ function MyNavbar() {
               </LinkContainer>
             </Nav>
           )}
+          <SwitchTheme />
         </Container>
       </Navbar>
       <Search />

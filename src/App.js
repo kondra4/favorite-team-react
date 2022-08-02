@@ -16,38 +16,41 @@ import HistoryPage from "./pages/HistoryPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 import { RequirePrivate } from "./hoc/RequirePrivate";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   return (
-    <Container>
-      <MyNavbar />
-      <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/favorites"
-            element={
-              <RequirePrivate>
-                <FavoritesTeams />
-              </RequirePrivate>
-            }
-          />
-          <Route
-            path="/history"
-            element={
-              <RequirePrivate>
-                <HistoryPage />
-              </RequirePrivate>
-            }
-          />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/details/:teamID" element={<DetailsPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ErrorBoundary>
-    </Container>
+    <ThemeProvider>
+      <Container>
+        <MyNavbar />
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route
+              path="/favorites"
+              element={
+                <RequirePrivate>
+                  <FavoritesTeams />
+                </RequirePrivate>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <RequirePrivate>
+                  <HistoryPage />
+                </RequirePrivate>
+              }
+            />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/details/:teamID" element={<DetailsPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ErrorBoundary>
+      </Container>
+    </ThemeProvider>
   );
 }
 
