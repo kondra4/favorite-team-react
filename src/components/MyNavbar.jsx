@@ -19,6 +19,8 @@ function MyNavbar() {
     dispatch(logOutAction());
   };
 
+  const userName = JSON.parse(localStorage.getItem("Email"));
+
   return (
     <>
       <Navbar bg="primary" variant="dark">
@@ -27,17 +29,24 @@ function MyNavbar() {
             <Navbar.Brand>YourFavTeams</Navbar.Brand>
           </LinkContainer>
           {isAuth ? (
-            <Nav className="me-auto">
-              <LinkContainer to="/favorites">
-                <Nav.Link>Favorites</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/history">
-                <Nav.Link>History</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/">
-                <Nav.Link onClick={logOut}>Log Out</Nav.Link>
-              </LinkContainer>
-            </Nav>
+            <Container>
+              <Nav className="me-auto">
+                <LinkContainer to="/favorites">
+                  <Nav.Link>Favorites</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/history">
+                  <Nav.Link>History</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/">
+                  <Nav.Link onClick={logOut}>Log Out</Nav.Link>
+                </LinkContainer>
+                <Navbar.Collapse className="justify-content-end">
+                  <Navbar.Text>
+                    Signed in as: <a>{userName}</a>
+                  </Navbar.Text>
+                </Navbar.Collapse>
+              </Nav>
+            </Container>
           ) : (
             <Nav className="me-auto">
               <LinkContainer to="/signin">
