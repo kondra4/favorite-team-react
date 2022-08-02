@@ -10,9 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOutAction } from "../store/reducers/userSlice";
 
 function MyNavbar() {
-  // const { isAuth, setIsAuth } = useContext(AuthContext);
   const isAuth = useSelector((state) => state.user.isAuth);
-  // const isAuth = JSON.parse(localStorage.getItem("Auth"));
+
   const dispatch = useDispatch();
 
   const logOut = (event) => {

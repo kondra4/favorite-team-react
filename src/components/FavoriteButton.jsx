@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,6 +9,7 @@ import {
 
 const FavoriteButton = ({ id }) => {
   const dispatch = useDispatch();
+
   const toogle = useSelector((state) =>
     state.favorites.favoritesTeams.includes(id)
   );
@@ -33,6 +35,10 @@ const FavoriteButton = ({ id }) => {
       )}
     </div>
   );
+};
+
+FavoriteButton.propTypes = {
+  id: PropTypes.number,
 };
 
 export default FavoriteButton;

@@ -2,20 +2,32 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { ListGroup } from "react-bootstrap";
 import FavoriteButton from "./FavoriteButton";
+import PropTypes from "prop-types";
 
-const DetailsTeam = ({ arrRes }) => {
-  return arrRes.map((arrRes) => (
-    <Card key={arrRes.venue.id} className="w-50 mx-auto">
-      <Card.Header className="text-center">{arrRes.venue.name}</Card.Header>
-      <Card.Img variant="top" src={arrRes.venue.image} />
+const DetailsTeam = ({ moreInfo }) => {
+  return (
+    <Card key={moreInfo.id} className="w-50 mx-auto">
+      <Card.Header className="text-center">{moreInfo.name}</Card.Header>
+      <Card.Img variant="top" src={moreInfo.image} />
       <ListGroup variant="flush">
-        <ListGroup.Item>{arrRes.venue.address}</ListGroup.Item>
-        <ListGroup.Item>{arrRes.venue.city}</ListGroup.Item>
-        <ListGroup.Item>{arrRes.venue.capacity}</ListGroup.Item>
+        <ListGroup.Item>{moreInfo.address}</ListGroup.Item>
+        <ListGroup.Item>{moreInfo.city}</ListGroup.Item>
+        <ListGroup.Item>{moreInfo.capacity}</ListGroup.Item>
       </ListGroup>
-      <FavoriteButton id={arrRes.team.id} />
+      <FavoriteButton id={moreInfo.id} />
     </Card>
-  ));
+  );
+};
+
+DetailsTeam.propTypes = {
+  moreInfo: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    address: PropTypes.string,
+    capacity: PropTypes.number,
+    city: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default DetailsTeam;

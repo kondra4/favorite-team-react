@@ -1,10 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
-const HistoryItem = ({ props }) => {
-  const searchQueries = props;
-
+const HistoryItem = ({ searchQueries }) => {
   const navigate = useNavigate();
 
   const clickSearchQuery = (query) => {
@@ -22,6 +21,10 @@ const HistoryItem = ({ props }) => {
       </Button>
     </div>
   ));
+};
+
+HistoryItem.propTypes = {
+  searchQueries: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default HistoryItem;
