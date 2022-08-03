@@ -59,7 +59,7 @@ function Search() {
       {searchTitle ? (
         open ? (
           data ? (
-            <div className="bg-light">
+            <div className="shadow-lg p-3 mb-5 bg-light rounded ">
               <Row xs={1} md={4} className="g-4 p-4">
                 {data.slice(",", 4).map((team) => (
                   <LinkContainer
