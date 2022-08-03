@@ -6,6 +6,11 @@ import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addInHistorySearch } from "../store/reducers/historySllice";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { LinkContainer } from "react-router-bootstrap";
+import CardItem from "./CardItem";
+import { useSearchTeamQuery } from "../store/reducers/teamsApi";
 
 function Search() {
   const dispatch = useDispatch();
@@ -15,15 +20,22 @@ function Search() {
 
   const [searchTitle, setSearchTitle] = useState("");
 
+  const [open, setOpen] = useState(false);
+
   const changeSearchInput = (e) => {
     setSearchTitle(e.target.value);
+    setOpen(true);
   };
-  const debounceOnChange = useCallback(debounce(changeSearchInput, 1000), []);
+
+  const debounceOnChange = useCallback(debounce(changeSearchInput, 300), []);
+
+  const { data } = useSearchTeamQuery(searchTitle);
 
   const clickButtonSearch = () => {
     if (isAuth) {
       dispatch(addInHistorySearch(searchTitle));
     }
+    setOpen(false);
     navigate({ pathname: "/search", search: `search=${searchTitle}` });
   };
 
@@ -41,8 +53,30 @@ function Search() {
           onChange={debounceOnChange}
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
+          placeholder="Type to search..."
         />
       </InputGroup>
+      {searchTitle ? (
+        open ? (
+          data ? (
+            <div className="bg-light">
+              <Row xs={1} md={4} className="g-4 p-4">
+                {data.slice(",", 4).map((team) => (
+                  <LinkContainer
+                    key={team.id}
+                    onClick={() => setOpen(false)}
+                    to={`/details/${team.id}`}
+                  >
+                    <Col>
+                      <CardItem teamInfo={team} />
+                    </Col>
+                  </LinkContainer>
+                ))}
+              </Row>
+            </div>
+          ) : null
+        ) : null
+      ) : null}
     </>
   );
 }
