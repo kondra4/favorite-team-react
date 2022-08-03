@@ -23,7 +23,7 @@ function MyNavbar() {
 
   const { theme } = useContext(ThemeContext);
 
-  const userName = JSON.parse(localStorage.getItem("Email"));
+  const userName = useSelector((state) => state.user.email);
 
   return (
     <>

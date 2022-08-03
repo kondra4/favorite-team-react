@@ -6,23 +6,31 @@ import {
   addFavorites,
   removeFavorites,
 } from "../store/reducers/favoritesSlice";
+import { useNavigate } from "react-router-dom";
 
 const FavoriteButton = ({ id }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isAuth = useSelector((state) => state.user.isAuth);
 
   const toogle = useSelector((state) =>
     state.favorites.favoritesTeams.includes(id)
   );
 
   const clickAddFavorite = () => {
-    dispatch(addFavorites(id));
+    if (!isAuth) {
+      navigate("/signin");
+    } else {
+      dispatch(addFavorites(id));
+    }
   };
 
   const clickRemoveFavorite = () => {
     dispatch(removeFavorites(id));
   };
 
-  return (
+  return isAuth ? (
     <div>
       {toogle ? (
         <Button onClick={clickRemoveFavorite} variant="success">
@@ -34,6 +42,10 @@ const FavoriteButton = ({ id }) => {
         </Button>
       )}
     </div>
+  ) : (
+    <Button onClick={clickAddFavorite} variant="outline-success">
+      + Add in favorites
+    </Button>
   );
 };
 

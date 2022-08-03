@@ -15,6 +15,7 @@ import favoritesReducer from "./favoritesSlice";
 import userDataReducer from "./userSlice";
 import fetchFavoritesReducer from "./fetchFavSlice";
 import historyReducer from "./historySllice";
+import { checkLoginMiddlware } from "../middleware/checkLoginMiddlware";
 
 const rootReducer = combineReducers({
   [teamsApi.reducerPath]: teamsApi.reducer,
@@ -39,7 +40,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(teamsApi.middleware),
+    }).concat([teamsApi.middleware, checkLoginMiddlware]),
 });
 export const persistor = persistStore(store);
 export default store;
