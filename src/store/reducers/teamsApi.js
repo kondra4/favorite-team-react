@@ -16,8 +16,9 @@ export const teamsApi = createApi({
           search: title,
         },
       }),
-      transformResponse: (response) => response.response,
+      transformResponse: (response) => response.response.map((obj) => obj.team),
     }),
+
     getMoreInfo: builder.query({
       query: (teamID) => ({
         url: "teams",
@@ -30,7 +31,10 @@ export const teamsApi = createApi({
           id: teamID,
         },
       }),
-      transformResponse: (response) => response.response,
+      transformResponse: (response) => {
+        const [result] = response.response;
+        return result.venue;
+      },
     }),
   }),
 });

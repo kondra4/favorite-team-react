@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFavorites } from "../utils/fetchFavorites";
-import CardGroup from "../components/CardGroup";
+import CardItem from "../components/CardItem";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -12,9 +14,19 @@ const FavoritesPage = () => {
     fetchFavorites(favorites, dispatch);
   }, []);
 
-  const dataTeams = useSelector((state) => state.fetchFavorites.dataFavorites);
+  const data = useSelector((state) => state.fetchFavorites.dataFavorites);
 
-  return <div>{dataTeams ? <CardGroup arrRes={dataTeams} /> : null}</div>;
+  const dataTransforming = data.map((obj) => obj.team);
+
+  return dataTransforming ? (
+    <Row xs={1} md={4} className="g-4">
+      {dataTransforming.map((team) => (
+        <Col key={team.id}>
+          <CardItem teamInfo={team} />
+        </Col>
+      ))}
+    </Row>
+  ) : null;
 };
 
 export default FavoritesPage;

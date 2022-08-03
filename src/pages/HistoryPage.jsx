@@ -9,7 +9,7 @@ const HistoryPage = () => {
 
   return (
     <div>
-      <HistoryItem props={searchQueries} />
+      <HistoryItem searchQueries={searchQueries} />
     </div>
   );
 };

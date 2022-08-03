@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../store/reducers/userSlice";
 
 function SignInForm() {
@@ -14,16 +14,20 @@ function SignInForm() {
   const [valueEmail, setValueEmail] = useState("");
   const [valuePassword, setValuePassword] = useState("");
 
+  const emailFromStore = useSelector((state) => state.user.email);
+  const passwordFromStore = useSelector((state) => state.user.password);
+
   const checkEmailAndPassword = (event) => {
     event.preventDefault();
-    if (
-      valueEmail === JSON.parse(localStorage.getItem("Email")) &&
-      valuePassword === JSON.parse(localStorage.getItem("Password"))
-    ) {
-      dispatch(signInAction());
-      navigate("/", { replace: true });
+    if (valueEmail === emailFromStore) {
+      if (valuePassword === passwordFromStore) {
+        dispatch(signInAction());
+        navigate("/", { replace: true });
+      } else {
+        alert("Error: Invalid Password");
+      }
     } else {
-      alert("Error: Invalid password or Email");
+      alert("Error: No such user");
     }
   };
 
