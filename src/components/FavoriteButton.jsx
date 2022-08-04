@@ -1,33 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addFavorites,
-  removeFavorites,
-} from "../store/reducers/favoritesSlice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
+import { addFavorites, removeFavorites } from "../store/reducers/userSlice";
 
 const FavoriteButton = ({ id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isAuth = useSelector((state) => state.user.isAuth);
+  let toogle = false;
+  let isAuth = false;
 
-  const toogle = useSelector((state) =>
-    state.favorites.favoritesTeams.includes(id)
-  );
+  const currentUser = useGetCurrentUser();
+
+  if (currentUser) {
+    isAuth = currentUser.isAuth;
+    toogle = currentUser.favoritesTeams.includes(id);
+  }
 
   const clickAddFavorite = () => {
     if (!isAuth) {
       navigate("/signin");
     } else {
-      dispatch(addFavorites(id));
+      dispatch(
+        addFavorites({
+          id: id,
+          currentUser: currentUser.email,
+        })
+      );
     }
   };
 
   const clickRemoveFavorite = () => {
-    dispatch(removeFavorites(id));
+    dispatch(
+      removeFavorites({
+        id: id,
+        currentUser: currentUser.email,
+      })
+    );
   };
 
   return isAuth ? (

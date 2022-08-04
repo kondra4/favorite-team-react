@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
-import { addEmail, addPassword } from "../store/reducers/userSlice";
+import { addNewUser } from "../store/reducers/userSlice";
 
 function SignUpForm() {
   const [valueEmail, setValueEmail] = useState("");
@@ -15,12 +15,17 @@ function SignUpForm() {
     event.preventDefault();
     if (valueEmail === "") {
       alert("Error: empty email");
-    }
-    if (valuePassword === "") {
+    } else if (valuePassword === "") {
       alert("Error: empty password");
     } else {
-      dispatch(addEmail(valueEmail));
-      dispatch(addPassword(valuePassword));
+      const newUser = {
+        email: valueEmail,
+        password: valuePassword,
+        isAuth: false,
+        favoritesTeams: [],
+        searchParams: [],
+      };
+      dispatch(addNewUser(newUser));
     }
   };
 

@@ -11,18 +11,14 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { teamsApi } from "./teamsApi";
-import favoritesReducer from "./favoritesSlice";
 import userDataReducer from "./userSlice";
 import fetchFavoritesReducer from "./fetchFavSlice";
-import historyReducer from "./historySllice";
 import { checkLoginMiddlware } from "../middleware/checkLoginMiddlware";
 
 const rootReducer = combineReducers({
   [teamsApi.reducerPath]: teamsApi.reducer,
-  favorites: favoritesReducer,
   user: userDataReducer,
   fetchFavorites: fetchFavoritesReducer,
-  historySearch: historyReducer,
 });
 
 const persistConfig = {

@@ -14,19 +14,22 @@ function SignInForm() {
   const [valueEmail, setValueEmail] = useState("");
   const [valuePassword, setValuePassword] = useState("");
 
-  const emailFromStore = useSelector((state) => state.user.email);
-  const passwordFromStore = useSelector((state) => state.user.password);
+  const usersFromStore = useSelector((state) => state.user);
 
   const checkEmailAndPassword = (event) => {
     event.preventDefault();
-    if (valueEmail === emailFromStore) {
-      if (valuePassword === passwordFromStore) {
-        dispatch(signInAction());
+
+    try {
+      let checkEmail = usersFromStore[valueEmail].email;
+
+      if (checkEmail && valuePassword === usersFromStore[valueEmail].password) {
+        dispatch(signInAction(valueEmail));
+
         navigate("/", { replace: true });
       } else {
         alert("Error: Invalid Password");
       }
-    } else {
+    } catch (err) {
       alert("Error: No such user");
     }
   };

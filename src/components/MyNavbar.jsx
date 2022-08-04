@@ -7,23 +7,29 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import Search from "./Search";
 import SwitchTheme from "./SwitchTheme";
-import { useDispatch, useSelector } from "react-redux";
-import { logOutAction } from "../store/reducers/userSlice";
+import { useDispatch } from "react-redux";
 import { ThemeContext } from "../context/ThemeContext";
+import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
+import { logOutAction } from "../store/reducers/userSlice";
 
 function MyNavbar() {
-  const isAuth = useSelector((state) => state.user.isAuth);
-
   const dispatch = useDispatch();
+
+  let isAuth = false;
+
+  const currentUser = useGetCurrentUser();
+
+  if (currentUser) {
+    isAuth = currentUser.isAuth;
+  }
 
   const logOut = (event) => {
     event.preventDefault();
-    dispatch(logOutAction());
+
+    dispatch(logOutAction(currentUser.email));
   };
 
   const { theme } = useContext(ThemeContext);
-
-  const userName = useSelector((state) => state.user.email);
 
   return (
     <>
@@ -46,7 +52,7 @@ function MyNavbar() {
                 </LinkContainer>
                 <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>
-                    <a>{userName}</a>
+                    <a>{currentUser.email}</a>
                   </Navbar.Text>
                 </Navbar.Collapse>
               </Nav>

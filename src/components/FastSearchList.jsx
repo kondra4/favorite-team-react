@@ -3,12 +3,10 @@ import Row from "react-bootstrap/Row";
 import { LinkContainer } from "react-router-bootstrap";
 import Col from "react-bootstrap/Col";
 import CardItem from "./CardItem";
-import teams from "../teams.json";
+import { useSearchTeamQuery } from "../store/reducers/teamsApi";
 
 const FastSearchList = ({ searchTitle, open, setOpen }) => {
-  // const { data } = useSearchTeamQuery(searchTitle);
-
-  const data = teams.response.map((obj) => obj.team);
+  const { data } = useSearchTeamQuery(searchTitle);
 
   return searchTitle ? (
     open ? (
