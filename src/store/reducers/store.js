@@ -13,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 import { teamsApi } from "./teamsApi";
 import userDataReducer from "./userSlice";
 import fetchFavoritesReducer from "./fetchFavSlice";
-import { checkLoginMiddlware } from "../middleware/checkLoginMiddlware";
+import { checkLoginMiddleware } from "../middleware/checkLoginMiddleware";
 
 const rootReducer = combineReducers({
   [teamsApi.reducerPath]: teamsApi.reducer,
@@ -36,7 +36,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([teamsApi.middleware, checkLoginMiddlware]),
+    }).concat([teamsApi.middleware, checkLoginMiddleware]),
 });
+
 export const persistor = persistStore(store);
+
 export default store;

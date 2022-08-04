@@ -30,7 +30,7 @@ const userSlice = createSlice({
 
     addFavorites(state, action) {
       const currentUser = action.payload.currentUser;
-      console.log("addfav", currentUser);
+
       state[currentUser].favoritesTeams.push(action.payload.id);
     },
 

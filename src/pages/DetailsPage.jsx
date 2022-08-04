@@ -10,9 +10,7 @@ const DetailsPage = () => {
 
   const { data } = useGetMoreInfoQuery(teamID);
 
-  return (
-    <div>{data ? <DetailsTeam teamID={teamID} moreInfo={data} /> : null}</div>
-  );
+  return data ? <DetailsTeam teamID={teamID} moreInfo={data} /> : null;
 };
 
 export default DetailsPage;
