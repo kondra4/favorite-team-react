@@ -6,13 +6,11 @@ import { useGetMoreInfoQuery } from "../store/reducers/teamsApi";
 const DetailsPage = () => {
   const location = useLocation();
 
-  const teamID = location.state;
+  const teamID = Number(location.pathname.split("/")[2]);
 
   const { data } = useGetMoreInfoQuery(teamID);
 
-  return (
-    <div>{data ? <DetailsTeam teamID={teamID} moreInfo={data} /> : null}</div>
-  );
+  return data ? <DetailsTeam teamID={teamID} moreInfo={data} /> : null;
 };
 
 export default DetailsPage;

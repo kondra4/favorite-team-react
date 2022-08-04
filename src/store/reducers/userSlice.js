@@ -2,31 +2,55 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    isAuth: false,
-    email: "",
-    password: "",
-  },
+  initialState: {},
   reducers: {
-    signInAction(state) {
-      state.isAuth = true;
+    signInAction(state, action) {
+      const currentUser = action.payload;
+
+      state[currentUser].isAuth = true;
     },
 
-    logOutAction(state) {
-      state.isAuth = false;
+    logOutAction(state, action) {
+      const currentUser = action.payload;
+
+      state[currentUser].isAuth = false;
     },
 
-    addEmail(state, action) {
-      state.email = action.payload;
+    addNewUser(state, action) {
+      const newUser = action.payload.email;
+
+      state[newUser] = action.payload;
     },
 
-    addPassword(state, action) {
-      state.password = action.payload;
+    addInHistorySearch(state, action) {
+      const currentUser = action.payload.currentUser;
+
+      state[currentUser].searchParams.push(action.payload.searchTitle);
+    },
+
+    addFavorites(state, action) {
+      const currentUser = action.payload.currentUser;
+
+      state[currentUser].favoritesTeams.push(action.payload.id);
+    },
+
+    removeFavorites(state, action) {
+      const currentUser = action.payload.currentUser;
+
+      state[currentUser].favoritesTeams = state[
+        currentUser
+      ].favoritesTeams.filter((id) => id !== action.payload.id);
     },
   },
 });
 
-export const { signInAction, logOutAction, addEmail, addPassword } =
-  userSlice.actions;
+export const {
+  signInAction,
+  logOutAction,
+  addNewUser,
+  addInHistorySearch,
+  addFavorites,
+  removeFavorites,
+} = userSlice.actions;
 
 export default userSlice.reducer;

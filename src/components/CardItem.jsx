@@ -1,17 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { ButtonGroup, ListGroup } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import PropTypes from "prop-types";
 import FavoriteButton from "./FavoriteButton";
 
 function CardItem({ teamInfo }) {
-  const navigate = useNavigate();
-
-  const showMore = (teamID) => {
-    navigate(`/details/${teamID}`, { state: teamID });
-  };
-
   return (
     <Card>
       <Card.Header className="text-center">{teamInfo.name}</Card.Header>
@@ -21,7 +15,9 @@ function CardItem({ teamInfo }) {
         <ListGroup.Item>{teamInfo.founded}</ListGroup.Item>
       </ListGroup>
       <ButtonGroup size="sm">
-        <Button onClick={() => showMore(teamInfo.id)}>More</Button>
+        <LinkContainer to={`/details/${teamInfo.id}`}>
+          <Button>More</Button>
+        </LinkContainer>
         <FavoriteButton id={teamInfo.id} />
       </ButtonGroup>
     </Card>
