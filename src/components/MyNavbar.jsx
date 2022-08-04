@@ -27,7 +27,7 @@ function MyNavbar() {
 
   return (
     <>
-      <Navbar bg={`${theme}`} variant="dark">
+      <Navbar sticky="top" bg={`${theme}`} variant="dark">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>YourFavTeams</Navbar.Brand>

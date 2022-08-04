@@ -6,11 +6,7 @@ import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addInHistorySearch } from "../store/reducers/historySllice";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { LinkContainer } from "react-router-bootstrap";
-import CardItem from "./CardItem";
-import { useSearchTeamQuery } from "../store/reducers/teamsApi";
+import FastSearchList from "./FastSearchList";
 
 function Search() {
   const dispatch = useDispatch();
@@ -27,9 +23,7 @@ function Search() {
     setOpen(true);
   };
 
-  const debounceOnChange = useCallback(debounce(changeSearchInput, 300), []);
-
-  const { data } = useSearchTeamQuery(searchTitle);
+  const debounceOnChange = useCallback(debounce(changeSearchInput, 500), []);
 
   const clickButtonSearch = () => {
     if (isAuth) {
@@ -56,27 +50,7 @@ function Search() {
           placeholder="Type to search..."
         />
       </InputGroup>
-      {searchTitle ? (
-        open ? (
-          data ? (
-            <div className="shadow-lg p-3 mb-5 bg-light rounded ">
-              <Row xs={1} md={4} className="g-4 p-4">
-                {data.slice(",", 4).map((team) => (
-                  <LinkContainer
-                    key={team.id}
-                    onClick={() => setOpen(false)}
-                    to={`/details/${team.id}`}
-                  >
-                    <Col>
-                      <CardItem teamInfo={team} />
-                    </Col>
-                  </LinkContainer>
-                ))}
-              </Row>
-            </div>
-          ) : null
-        ) : null
-      ) : null}
+      <FastSearchList searchTitle={searchTitle} open={open} setOpen={setOpen} />
     </>
   );
 }
