@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { ListGroup } from "react-bootstrap";
-import FavoriteButton from "./FavoriteButton";
+import { FavoriteButton } from "./FavoriteButton";
 import PropTypes from "prop-types";
 
-const DetailsTeam = ({ moreInfo, teamID }) => {
+export const DetailsTeam = ({ moreInfo, teamID }) => {
   return (
     <Card key={moreInfo.id} className="w-50 mx-auto">
       <Card.Header className="text-center">{moreInfo.name}</Card.Header>
@@ -30,5 +30,3 @@ DetailsTeam.propTypes = {
   }),
   teamID: PropTypes.number,
 };
-
-export default DetailsTeam;

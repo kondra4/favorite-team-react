@@ -1,8 +1,8 @@
 import React from "react";
-import HistoryItem from "../components/HistoryItem";
+import { HistoryItem } from "../components";
 import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
 
-const HistoryPage = () => {
+export const HistoryPage = () => {
   const currentUser = useGetCurrentUser();
 
   const searchQueries = currentUser.searchParams;
@@ -17,5 +17,3 @@ const HistoryPage = () => {
     </div>
   );
 };
-
-export default HistoryPage;

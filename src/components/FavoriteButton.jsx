@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
 import { addFavorites, removeFavorites } from "../store/reducers/userSlice";
 
-const FavoriteButton = ({ id }) => {
+export const FavoriteButton = ({ id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,5 +64,3 @@ const FavoriteButton = ({ id }) => {
 FavoriteButton.propTypes = {
   id: PropTypes.number,
 };
-
-export default FavoriteButton;

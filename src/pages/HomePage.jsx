@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <div>
       <h1 className="text-center">
@@ -10,5 +10,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;

@@ -6,11 +6,11 @@ import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import FastSearchList from "./FastSearchList";
+import { FastSearchList } from "./FastSearchList";
 import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
 import { addInHistorySearch } from "../store/reducers/userSlice";
 
-function Search() {
+export function Search() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -68,5 +68,3 @@ function Search() {
     </>
   );
 }
-
-export default Search;

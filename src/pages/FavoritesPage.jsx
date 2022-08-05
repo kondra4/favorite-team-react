@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFavorites } from "../utils/fetchFavorites";
-import CardItem from "../components/CardItem";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
+import { fetchFavorites } from "../utils/fetchFavorites";
+import { CardItem } from "../components";
 
-const FavoritesPage = () => {
+export const FavoritesPage = () => {
   const dispatch = useDispatch();
 
   const currentUser = useGetCurrentUser();
@@ -33,5 +33,3 @@ const FavoritesPage = () => {
     <h1 className="text-center">you didn't add anything favorites</h1>
   );
 };
-
-export default FavoritesPage;

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import { addNewUser } from "../store/reducers/userSlice";
 
-function SignUpForm() {
+export function SignUpForm() {
   const [valueEmail, setValueEmail] = useState("");
   const [valuePassword, setValuePassword] = useState("");
 
@@ -59,5 +59,3 @@ function SignUpForm() {
     </Form>
   );
 }
-
-export default SignUpForm;
