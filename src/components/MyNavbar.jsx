@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 
-import Search from "./Search";
-import SwitchTheme from "./SwitchTheme";
-import { useDispatch } from "react-redux";
 import { ThemeContext } from "../context/ThemeContext";
 import { useGetCurrentUser } from "../hooks/useGetUserCurrent";
 import { logOutAction } from "../store/reducers/userSlice";
 
-function MyNavbar() {
+import { Search } from "./Search";
+import { SwitchTheme } from "./SwitchTheme";
+
+export function MyNavbar() {
   const dispatch = useDispatch();
 
   let isAuth = false;
@@ -74,5 +75,3 @@ function MyNavbar() {
     </>
   );
 }
-
-export default MyNavbar;

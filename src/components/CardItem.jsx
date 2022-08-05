@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button";
 import { ButtonGroup, ListGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import PropTypes from "prop-types";
-import FavoriteButton from "./FavoriteButton";
+import { FavoriteButton } from "./FavoriteButton";
 
-function CardItem({ teamInfo }) {
+export function CardItem({ teamInfo }) {
   return (
     <Card>
       <Card.Header className="text-center">{teamInfo.name}</Card.Header>
@@ -33,5 +33,3 @@ CardItem.propTypes = {
     logo: PropTypes.string,
   }),
 };
-
-export default CardItem;

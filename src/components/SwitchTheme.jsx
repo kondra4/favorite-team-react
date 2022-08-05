@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { ThemeContext } from "../context/ThemeContext";
 
-const SwitchTheme = () => {
+export const SwitchTheme = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
@@ -20,5 +20,3 @@ const SwitchTheme = () => {
     </DropdownButton>
   );
 };
-
-export default SwitchTheme;

@@ -4,19 +4,21 @@ import { Container } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import MyNavbar from "./components/MyNavbar";
-import HomePage from "./pages/HomePage";
-import FavoritesTeams from "./pages/FavoritesPage";
-import DetailsPage from "./pages/DetailsPage";
-import SearchPage from "./pages/SearchPage";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import NotFound from "./pages/NotFound";
-import HistoryPage from "./pages/HistoryPage";
-import ErrorBoundary from "./components/ErrorBoundary";
+import { MyNavbar } from "./components";
+import {
+  DetailsPage,
+  FavoritesPage,
+  HistoryPage,
+  HomePage,
+  NotFound,
+  SearchPage,
+  SignIn,
+  SignUp,
+} from "./pages";
 
 import { RequirePrivate } from "./hoc/RequirePrivate";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 function App() {
   return (
@@ -32,7 +34,7 @@ function App() {
               path="/favorites"
               element={
                 <RequirePrivate>
-                  <FavoritesTeams />
+                  <FavoritesPage />
                 </RequirePrivate>
               }
             />

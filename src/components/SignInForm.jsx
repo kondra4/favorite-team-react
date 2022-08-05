@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../store/reducers/userSlice";
 
-function SignInForm() {
+export function SignInForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,5 +64,3 @@ function SignInForm() {
     </Form>
   );
 }
-
-export default SignInForm;

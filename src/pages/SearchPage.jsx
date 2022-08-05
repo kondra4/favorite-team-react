@@ -1,11 +1,11 @@
 import React from "react";
-import CardItem from "../components/CardItem";
-import { useSearchTeamQuery } from "../store/reducers/teamsApi";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { CardItem } from "../components";
+import { useSearchTeamQuery } from "../store/reducers/teamsApi";
 import { useCustomSearchParams } from "../hooks/useCustomSearchParams";
 
-const SearchPage = () => {
+export const SearchPage = () => {
   const [searchTitle] = useCustomSearchParams();
 
   const { search } = searchTitle;
@@ -22,5 +22,3 @@ const SearchPage = () => {
     </Row>
   ) : null;
 };
-
-export default SearchPage;

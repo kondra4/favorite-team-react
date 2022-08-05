@@ -2,10 +2,10 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import { LinkContainer } from "react-router-bootstrap";
 import Col from "react-bootstrap/Col";
-import CardItem from "./CardItem";
+import { CardItem } from "./CardItem";
 import { useSearchTeamQuery } from "../store/reducers/teamsApi";
 
-const FastSearchList = ({ searchTitle, open, setOpen }) => {
+export const FastSearchList = ({ searchTitle, open, setOpen }) => {
   const { data } = useSearchTeamQuery(searchTitle);
 
   return searchTitle ? (
@@ -30,5 +30,3 @@ const FastSearchList = ({ searchTitle, open, setOpen }) => {
     ) : null
   ) : null;
 };
-
-export default FastSearchList;
